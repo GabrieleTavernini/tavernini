@@ -8,7 +8,7 @@ package persona;
  * @author gabriele.tavernini 4INC 2022/2023
  * @version 1.0 del 28/09/2022
  */
-public class Persona {
+public class Persona2 {
 
     public Double altezza;
     public String cognome;
@@ -24,7 +24,7 @@ public class Persona {
     * <br> {@link #setPeso(Float peso)} <br>
     * {@link #setDataDiNascita(String dataDiNascita)}
      */
-    public Persona() {
+    public Persona2() {
     }
     
     /**
@@ -37,7 +37,7 @@ public class Persona {
      * @param peso 
      */
     
-    public Persona(Double altezza, String cognome, String dataDiNascita, String nome, Float peso) {
+    public Persona1(Double altezza, String cognome, String dataDiNascita, String nome, Float peso) {
         this.altezza = altezza;
         this.cognome = cognome;
         this.dataDiNascita = dataDiNascita;

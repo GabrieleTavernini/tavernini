@@ -15,9 +15,9 @@ public class ProvaPersona {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Persona p = new Persona();
+        Persona1 p = new Persona1();
         
-        Persona p2 = new Persona(1.80, "cognome", "28/09/2022", "nome", 70f);
+        Persona1 p2 = new Persona1(1.80, "cognome", "28/09/2022", "nome", 70f);
         
         String info =p2.info();
         
