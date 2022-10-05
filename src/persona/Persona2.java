@@ -1,64 +1,52 @@
-
 package persona;
 
 /**
- * La classe persona definisce alcune caratteristiche e comportamenti di un 
- * essere umano
- * 
- * @author gabriele.tavernini 4INC 2022/2023
- * @version 1.0 del 28/09/2022
+ * La classe Persona1 definisce alcune caratteristiche di un essere umano
+ *
+ * @author davide.deandrade
+ * @version 1.0 28/09/2022
  */
 public class Persona2 {
 
     public Double altezza;
     public String cognome;
-    public String dataDiNascita;
     public String nome;
     public Float peso;
+    private String dataDiNascita;
 
     /**
-    * Costruttore della classe Persona senza parametri Per impostare i
-    * parametri si possono usare i seguenti metodi:
-    * {@link #setAltezza(Double altezza)} <br>
-    * {@link #setCognome(String cognome)} <br> {@link #setNome(String nome)}
-    * <br> {@link #setPeso(Float peso)} <br>
-    * {@link #setDataDiNascita(String dataDiNascita)}
+     * Costruttore della classe Persona senza parametri
      */
     public Persona2() {
     }
-    
+
     /**
-     * costruttore della classe Persona con parametri
-     * 
-     * @param altezza
-     * @param cognome
-     * @param dataDiNascita
-     * @param nome
-     * @param peso 
+     * Costruttore della classe Presona con parametri
+     *
+     * @param altezza Altezza
+     * @param cognome Cognome
+     * @param nome Nome
+     * @param peso Peso
      */
-    
-    public Persona1(Double altezza, String cognome, String dataDiNascita, String nome, Float peso) {
+    public Persona2(Double altezza, String cognome, String nome, Float peso) {
         this.altezza = altezza;
         this.cognome = cognome;
-        this.dataDiNascita = dataDiNascita;
         this.nome = nome;
         this.peso = peso;
     }
-    
+
     /**
-     * Restituisce l'altezza di una persona
-     * 
+     * Restituisce l'altezza della persona
+     *
      * @return altezza
      */
-
     public Double getAltezza() {
         return altezza;
     }
-    
-    
+
     /**
-     * Imposta l'altezza di una persona
-     * 
+     * Imposta il valore dell'altezza della persona
+     *
      * @param altezza Altezza
      */
     public void setAltezza(Double altezza) {
@@ -66,53 +54,35 @@ public class Persona2 {
     }
 
     /**
-     * Restituisce il cognome di una persona
-     * 
+     * Restituisce il cognome della persona
+     *
      * @return cognome
      */
     public String getCognome() {
         return cognome;
     }
-    
+
     /**
-     * Imposta il cognome di una persona
-     * 
-     * @param cognome Cognome 
+     * Imposta il cognome della persona
+     *
+     * @param cognome Cognome
      */
     public void setCognome(String cognome) {
         this.cognome = cognome;
     }
-    
+
     /**
-     * Restituisce la data di nascita di una persona
-     * 
-     * @return dataDiNascita
-     */
-    public String getDataDiNascita() {
-        return dataDiNascita;
-    }
-    
-    /**
-     * Imposta la data di nascita di una persona
-     * 
-     * @param dataDiNascita DataDiNascita
-     */
-    public void setDataDiNascita(String dataDiNascita) {
-        this.dataDiNascita = dataDiNascita;
-    }
-    
-    /**
-     * Restituisce il nome di una persona
-     * 
+     * Restituisce il nome della persona
+     *
      * @return nome
      */
     public String getNome() {
         return nome;
     }
-    
+
     /**
-     * Imposta il nome di una persona
-     * 
+     * Imposta il nome della persona
+     *
      * @param nome Nome
      */
     public void setNome(String nome) {
@@ -120,8 +90,8 @@ public class Persona2 {
     }
 
     /**
-     * Restituisce il peso di una persona
-     * 
+     * Restituisce il peso della persona
+     *
      * @return peso
      */
     public Float getPeso() {
@@ -129,31 +99,100 @@ public class Persona2 {
     }
 
     /**
-     * Imposta il peso di una persona
-     * 
+     * Imposta il peso della persona
+     *
      * @param peso Peso
      */
     public void setPeso(Float peso) {
         this.peso = peso;
     }
+
     /**
-     * Restituisce il riepilogo di una persona
-     * 
-     * @return Riepilogo caratteristiche
+     * Restituisce la data di nascita della persona
+     *
+     * @return dataDiNascita
      */
-    public String info(){
-        String info;
-        
-        info =    "Cognome        :" + this.cognome       +"\n"
-                + "Nome           :" + this.nome          +"\n"
-                + "Altezza        :" + this.altezza       +"\n"
-                + "peso           :" + this.peso          +"\n"
-                + "Data di nascita:" + this.dataDiNascita +"\n";
-        
-        return info;
-    
-    
+    public String getDataDiNascita() {
+        return dataDiNascita;
     }
 
-    
+    /**
+     * Imposta la data di nascita della persona
+     *
+     * @param dataDiNascita DataDiNascita
+     */
+    public void setDataDiNascita(String dataDiNascita) {
+
+        Boolean valida = false;
+        String[] d = dataDiNascita.split("/");
+        Integer data[] = new Integer[d.length];
+        
+        for (int i = 0; i < d.length; i++) {
+            data[i] = Integer.valueOf(d[i]);
+        }
+
+        if (data[2] >= 0 && data[2] <= 9999) {
+            switch (data[1]) {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    if (data[0] >= 1 && data[0] <= 31) {
+                        valida = true;
+                    }
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    if (data[0] >= 1 && data[0] <= 30) {
+                        valida = true;
+                    }
+                    break;
+                case 2:
+                    if (data[2] % 400 == 0 || data[2] % 4 == 0 && data[2] % 100 != 0) {
+                        if (data[0] >= 1 && data[0] <= 29) {
+                            valida = true;
+                        }
+
+                    } else {
+                        if (data[0] >= 1 && data[0] <= 28) {
+                            valida = true;
+                        }
+                    }
+                    break;
+                default:
+                    valida = false;
+            }
+
+        }
+        if (valida == true) {
+            this.dataDiNascita = dataDiNascita;
+        }else{
+            this.dataDiNascita = null;
+        }
+    }
+
+    /**
+     * Restituisce le informazione legate alla persona
+     *
+     * @return Riepilogo Caratteristiche
+     */
+    public String info() {
+        String info;
+
+        info = "Altezza:         " + this.altezza + "\n"
+                + "Cognome:         " + this.cognome + "\n"
+                + "Data di nascita: " + this.dataDiNascita + "\n"
+                + "Nome:            " + this.nome + "\n"
+                + "Peso:            " + this.peso + "\n";
+
+        return info;
+    }
 }
+
+
+
