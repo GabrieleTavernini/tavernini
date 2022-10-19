@@ -3,15 +3,15 @@ package persona;
 /**
  * La classe Persona1 definisce alcune caratteristiche di un essere umano
  *
- * @author davide.deandrade
+ * @author gabriele.tavernini
  * @version 1.0 28/09/2022
  */
 public class Persona2 {
 
-    public Double altezza;
-    public String cognome;
-    public String nome;
-    public Float peso;
+    private Double altezza;
+    private String cognome;
+    private String nome;
+    private Float peso;
     private String dataDiNascita;
 
     /**
@@ -33,6 +33,8 @@ public class Persona2 {
         this.cognome = cognome;
         this.nome = nome;
         this.peso = peso;
+
+        this.setDataDiNascita(dataDiNascita);
     }
 
     /**
@@ -49,8 +51,12 @@ public class Persona2 {
      *
      * @param altezza Altezza
      */
-    public void setAltezza(Double altezza) {
-        this.altezza = altezza;
+    final public void setAltezza(Double altezza) {
+        if (altezza < 3 && altezza > 0.5) {
+            this.altezza = altezza;
+        } else {
+            this.altezza = null;
+        }
     }
 
     /**
@@ -67,8 +73,12 @@ public class Persona2 {
      *
      * @param cognome Cognome
      */
-    public void setCognome(String cognome) {
-        this.cognome = cognome;
+    final public void setCognome(String cognome) {
+        if (cognome == null) {
+            this.cognome = null;
+        } else {
+            this.cognome = cognome;
+        }
     }
 
     /**
@@ -86,7 +96,11 @@ public class Persona2 {
      * @param nome Nome
      */
     public void setNome(String nome) {
-        this.nome = nome;
+        if (nome == null) {
+            this.nome = null;
+        } else {
+            this.nome = nome;
+        }
     }
 
     /**
@@ -103,8 +117,12 @@ public class Persona2 {
      *
      * @param peso Peso
      */
-    public void setPeso(Float peso) {
-        this.peso = peso;
+    final public void setPeso(Float peso) {
+        if (peso > 1 && peso < 200) {
+            this.peso = peso;
+        } else {
+            this.peso = null;
+        }
     }
 
     /**
@@ -112,7 +130,7 @@ public class Persona2 {
      *
      * @return dataDiNascita
      */
-    public String getDataDiNascita() {
+    final public String getDataDiNascita() {
         return dataDiNascita;
     }
 
@@ -121,59 +139,55 @@ public class Persona2 {
      *
      * @param dataDiNascita DataDiNascita
      */
-    public void setDataDiNascita(String dataDiNascita) {
-
+    final public void setDataDiNascita(String dataDiNascita) {
+        String annoDiNascitaString, meseDiNascitaString, giornoDiNascitaString;
+        Integer annoDiNascita, meseDiNascita, giornoDiNascita;
         Boolean valida = false;
-        String[] d = dataDiNascita.split("/");
-        Integer data[] = new Integer[d.length];
-        
-        for (int i = 0; i < d.length; i++) {
-            data[i] = Integer.valueOf(d[i]);
-        }
 
-        if (data[2] >= 0 && data[2] <= 9999) {
-            switch (data[1]) {
-                case 1:
-                case 3:
-                case 5:
-                case 7:
-                case 8:
-                case 10:
-                case 12:
-                    if (data[0] >= 1 && data[0] <= 31) {
+        giornoDiNascitaString = dataDiNascita.substring(0, 2);
+        meseDiNascitaString = dataDiNascita.substring(3, 5);
+        annoDiNascitaString = dataDiNascita.substring(6, 10);
+
+        giornoDiNascita = Integer.parseInt(giornoDiNascitaString);
+        meseDiNascita = Integer.parseInt(meseDiNascitaString);
+        annoDiNascita = Integer.parseInt(annoDiNascitaString);
+
+        switch (meseDiNascita) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                if (giornoDiNascita >= 1 && giornoDiNascita <= 31) {
+                    valida = true;
+                }
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                if (giornoDiNascita >= 1 && giornoDiNascita <= 30) {
+                    valida = true;
+                }
+                break;
+            case 2:
+                if (annoDiNascita % 400 == 0 || (annoDiNascita % 4 == 0
+                        && annoDiNascita % 100 != 0)) {
+                    if (giornoDiNascita >= 1 && giornoDiNascita <= 29) {
                         valida = true;
                     }
-                    break;
-                case 4:
-                case 6:
-                case 9:
-                case 11:
-                    if (data[0] >= 1 && data[0] <= 30) {
-                        valida = true;
-                    }
-                    break;
-                case 2:
-                    if (data[2] % 400 == 0 || data[2] % 4 == 0 && data[2] % 100 != 0) {
-                        if (data[0] >= 1 && data[0] <= 29) {
-                            valida = true;
-                        }
 
-                    } else {
-                        if (data[0] >= 1 && data[0] <= 28) {
-                            valida = true;
-                        }
-                    }
-                    break;
-                default:
-                    valida = false;
-            }
-
+                } else if (giornoDiNascita >= 1 && giornoDiNascita <= 28) {
+                    valida = true;
+                }
         }
-        if (valida == true) {
+
+        if (valida) {
             this.dataDiNascita = dataDiNascita;
-        }else{
-            this.dataDiNascita = null;
         }
+
     }
 
     /**
@@ -192,7 +206,5 @@ public class Persona2 {
 
         return info;
     }
+
 }
-
-
-
