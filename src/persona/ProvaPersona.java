@@ -16,11 +16,13 @@ public class ProvaPersona {
      */
     public static void main(String[] args) {
         
-        Persona3 p = new Persona3(1.80, "cognome","11/09/2022", "nome", 70f);
+        Persona4 p = new Persona4(1.80, "cognome","11/09/2022", "nome", 70f);
         
-        Persona1 p2 = new Persona1(1.80, "cognome", "23/09/2022", "nome", 70f);
+        Persona4 p2 = new Persona4(1.80, "cognome", "23/09/2022", "nome", 70f);
         
-        String info =p2.info();
+        System.out.println(p.verificaOmonimia(p2));
+        
+        System.out.println(p.info());
         
         
         System.out.println("l'eta' e' " + p.calcoloEta(p.getDataDiNascita()));
