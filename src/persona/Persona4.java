@@ -72,8 +72,8 @@ public class Persona4 {
      * @param altezza Altezza
      */
     public void setAltezza(Double altezza) {
-        //Integer eta = calcoloEta(dataDiNascita);
-        /*if(eta<=10)        
+        Integer eta = calcoloEta(dataDiNascita);
+        if(eta<=10)        
             if(altezza<=1 && altezza>=0.5)
                 this.altezza = altezza;
             else
@@ -82,7 +82,7 @@ public class Persona4 {
             if(altezza>1 && altezza<=2)
                 this.altezza = altezza;
             else
-                this.altezza = null;*/
+                this.altezza = null;
     }
 
     /**
@@ -100,8 +100,8 @@ public class Persona4 {
      * @param cognome Cognome
      */
     public void setCognome(String cognome) {
-        for(int i =0; 1>cognome.length();i++){
-        if((int)cognome.charAt(i)<=97 && (int)cognome.charAt(i)<=122 )
+        for(int i =0; i<cognome.length();i++){
+        if(cognome.charAt(i)>=97 && cognome.charAt(i)<=122 )
             this.cognome =  cognome;
         else
             this.cognome = null;
@@ -125,7 +125,7 @@ public class Persona4 {
     public final void setNome(String nome) {
         if(nome != null && (int)nome.charAt(0)>=65 && (int)nome.charAt(0)<=90)
             for(int i=0; i<nome.length();i++)
-                if(nome.charAt(i) == (char)255 && (int)nome.charAt(i+1)<65 || (int)nome.charAt(i+1)>90){
+                if(nome.charAt(i) == (char)255 && (int)nome.charAt(i+1)<65 && (int)nome.charAt(i+1)>90){
                     this.nome = null;
                     break;
                 }else
@@ -348,9 +348,9 @@ public class Persona4 {
         
     }
     
-    public Boolean verificaOmonimia(Persona4 p){
+    public static Boolean verificaOmonimia(Persona4 p, Persona4 p2){
         Boolean verifica = false;
-        if (this.nome.equals(p.nome) && this.cognome.equals(p.cognome)){
+        if (p.nome.equals(p2.nome) && p.cognome.equals(p2.cognome)){
             verifica = true;
         }
         
